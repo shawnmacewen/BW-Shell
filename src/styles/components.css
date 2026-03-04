@@ -2541,3 +2541,5 @@ tbody tr:hover {
   border-color: #d8dee7;
   cursor: not-allowed;
 }
+
+.nav-item-right { margin-left: auto; }

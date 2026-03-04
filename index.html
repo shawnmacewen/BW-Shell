@@ -34,6 +34,7 @@
     <button class="nav-item" data-page="Video">Video</button>
     <button class="nav-item" data-page="Admin Tools">Admin Tools</button>
     <button class="nav-item" data-page="Experimental">Experimental</button>
+    <button class="nav-item" data-page="Help Center">Help Center</button>
   </nav>
 
   <main>
@@ -59,11 +60,11 @@
     let adminToolsPage = 1;
     let bulkUploadDetailEvent = null;
     const ROLE_PROFILES = {
-      'Super Admin': { label: 'BAS Super Admin', pages: ['Accounts','Users','Compliance','Content','Websites','Locator','Video','Admin Tools','Experimental'], readOnly: false },
-      'Program Admin': { label: 'BD Program Admin', pages: ['Accounts','Users','Compliance','Content','Websites','Locator','Video'], readOnly: false },
-      'Compliance Admin': { label: 'BD Compliance Admin', pages: ['Accounts','Users','Compliance','Content','Websites'], readOnly: false },
-      'Compliance Reviewer': { label: 'BD Compliance Reviewer', pages: ['Compliance','Content','Websites'], readOnly: true },
-      'Financial Advisor': { label: 'Financial Advisor', pages: ['Content','Websites','Locator','Video'], readOnly: true }
+      'Super Admin': { label: 'BAS Super Admin', pages: ['Accounts','Users','Compliance','Content','Websites','Locator','Video','Admin Tools','Experimental','Help Center'], readOnly: false },
+      'Program Admin': { label: 'BD Program Admin', pages: ['Accounts','Users','Compliance','Content','Websites','Locator','Video','Help Center'], readOnly: false },
+      'Compliance Admin': { label: 'BD Compliance Admin', pages: ['Accounts','Users','Compliance','Content','Websites','Help Center'], readOnly: false },
+      'Compliance Reviewer': { label: 'BD Compliance Reviewer', pages: ['Compliance','Content','Websites','Help Center'], readOnly: true },
+      'Financial Advisor': { label: 'Financial Advisor', pages: ['Content','Websites','Locator','Video','Help Center'], readOnly: true }
     };
     const ROLE_ORDER = ['Super Admin','Program Admin','Compliance Admin','Compliance Reviewer','Financial Advisor'];
 

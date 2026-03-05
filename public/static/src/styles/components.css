@@ -2543,3 +2543,18 @@ tbody tr:hover {
 }
 
 .nav-item-right { margin-left: auto; }
+
+
+.commit-sha-badge {
+  display: inline-flex;
+  align-items: center;
+  height: 28px;
+  padding: 0 0.55rem;
+  margin-right: 0.5rem;
+  border: 1px solid #cad5e7;
+  border-radius: 999px;
+  background: #f5f8ff;
+  color: #3d5680;
+  font-size: 0.75rem;
+  font-weight: 600;
+}

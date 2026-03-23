@@ -58,11 +58,12 @@ function renderWebsitesSubmissionsView() {
 function renderPrintView() {
   const currentRole = window.currentRole || 'Super Admin';
   const isSuperAdmin = currentRole === 'Super Admin';
-  const activeTab = isSuperAdmin ? (printTabState.admin || 'Print Orders') : (printTabState.advisor || 'Store');
+  window.__printTabState = window.__printTabState || { advisor: 'Store', admin: 'Print Orders' };
 
   const advisorTabs = ['Store', 'My Orders', 'My Profile'];
   const adminTabs = ['Print Orders'];
   const tabs = isSuperAdmin ? adminTabs : advisorTabs;
+  const activeTab = isSuperAdmin ? (window.__printTabState.admin || 'Print Orders') : (window.__printTabState.advisor || 'Store');
   const safeTab = tabs.includes(activeTab) ? activeTab : tabs[0];
 
   pageContainer.innerHTML = `
@@ -82,8 +83,8 @@ function renderPrintView() {
   pageContainer.querySelectorAll('[data-print-tab]').forEach((btn) => {
     btn.addEventListener('click', () => {
       const nextTab = btn.getAttribute('data-print-tab');
-      if (isSuperAdmin) printTabState.admin = nextTab;
-      else printTabState.advisor = nextTab;
+      if (isSuperAdmin) window.__printTabState.admin = nextTab;
+      else window.__printTabState.advisor = nextTab;
       renderPrintView();
     });
   });

@@ -54,9 +54,48 @@ function renderWebsitesSubmissionsView() {
   `;
 }
 
+
+function renderPrintView() {
+  const currentRole = (window.store && window.store.state && window.store.state.currentRole) || 'Super Admin';
+  const isSuperAdmin = currentRole === 'Super Admin';
+  const activeTab = (window.store && window.store.state && window.store.state.printTab)
+    || (isSuperAdmin ? 'Print Orders' : 'Store');
+
+  const advisorTabs = ['Store', 'My Profile', 'My Orders'];
+  const adminTabs = ['Print Orders'];
+  const tabs = isSuperAdmin ? adminTabs : advisorTabs;
+  const safeTab = tabs.includes(activeTab) ? activeTab : tabs[0];
+
+  pageContainer.innerHTML = `
+    <div class="page-header">
+      <h1 class="page-title">Print</h1>
+      <p class="page-subtitle">Print experience mock for role-specific user journeys.</p>
+    </div>
+    <div class="users-subnav" style="margin-bottom:0.9rem;">
+      ${tabs.map((tab) => `<button class="users-subnav-item ${tab === safeTab ? 'active' : ''}" data-print-tab="${tab}" type="button">${tab}</button>`).join('')}
+    </div>
+    <section class="roles-panel" style="min-height:220px;">
+      <h3 style="margin:0 0 0.55rem;">${safeTab}</h3>
+      <p class="placeholder-copy">Content for <strong>${safeTab}</strong> will be populated later.</p>
+    </section>
+  `;
+
+  pageContainer.querySelectorAll('[data-print-tab]').forEach((btn) => {
+    btn.addEventListener('click', () => {
+      if (window.store) window.store.set({ printTab: btn.getAttribute('data-print-tab') });
+      renderPrintView();
+    });
+  });
+}
+
 function renderPlaceholderView(sectionName) {
   if (sectionName === 'Websites') {
     renderWebsitesSubmissionsView();
+    return;
+  }
+
+  if (sectionName === 'Print') {
+    renderPrintView();
     return;
   }
 

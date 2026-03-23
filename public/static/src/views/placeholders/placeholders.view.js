@@ -62,9 +62,39 @@ function renderPrintView() {
   window.__printOrderState = window.__printOrderState || { mode: 'list', orderId: null, previewOpen: false, previewOrderId: null };
 
   const printOrders = [
-    { orderDate: '2026-03-18', orderNumber: 'PO-100384', status: 'Pending', tracking: '', shippedDate: '', previewPdf: 'assets/pdfs/ArchiveSnapsnot2.pdf' },
-    { orderDate: '2026-03-16', orderNumber: 'PO-100361', status: 'Shipped', tracking: '1Z999AA10123456784', shippedDate: '2026-03-17', previewPdf: 'assets/pdfs/archivingExample.pdf' },
-    { orderDate: '2026-03-12', orderNumber: 'PO-100322', status: 'Shipped', tracking: '1Z999AA10123456785', shippedDate: '2026-03-14', previewPdf: 'assets/pdfs/ArchiveSnapsnot2.pdf' }
+    {
+      accountName: 'ABC Investments',
+      username: 'skumar',
+      emailAddress: 'siva.kumar@abcinvestments.com',
+      orderDate: '2026-03-18',
+      orderNumber: 'PO-100384',
+      status: 'Pending',
+      tracking: '',
+      shippedDate: '',
+      previewPdf: 'assets/pdfs/ArchiveSnapsnot2.pdf'
+    },
+    {
+      accountName: 'ABC Investments',
+      username: 'adash',
+      emailAddress: 'amy.dash@abcinvestments.com',
+      orderDate: '2026-03-16',
+      orderNumber: 'PO-100361',
+      status: 'Shipped',
+      tracking: '1Z999AA10123456784',
+      shippedDate: '2026-03-17',
+      previewPdf: 'assets/pdfs/archivingExample.pdf'
+    },
+    {
+      accountName: 'Superior Wealth Management',
+      username: 'jthomas',
+      emailAddress: 'jordan.thomas@superiorwealth.com',
+      orderDate: '2026-03-12',
+      orderNumber: 'PO-100322',
+      status: 'Shipped',
+      tracking: '1Z999AA10123456785',
+      shippedDate: '2026-03-14',
+      previewPdf: 'assets/pdfs/ArchiveSnapsnot2.pdf'
+    }
   ];
 
   const advisorTabs = ['Store', 'My Orders', 'My Profile'];
@@ -112,6 +142,7 @@ function renderPrintView() {
             <table class="users-table">
               <thead>
                 <tr>
+                  ${isSuperAdmin ? '<th>Account Name</th><th>Username</th><th>Email Address</th>' : ''}
                   <th>Order Date</th>
                   <th>Order Number</th>
                   <th>Status</th>
@@ -123,6 +154,7 @@ function renderPrintView() {
               </thead>
               <tbody>
                 ${printOrders.map((o) => `<tr>
+                  ${isSuperAdmin ? `<td>${o.accountName}</td><td>${o.username}</td><td>${o.emailAddress}</td>` : ''}
                   <td>${o.orderDate}</td>
                   <td>${o.orderNumber}</td>
                   <td><span class="status-pill ${o.status === 'Shipped' ? 'active' : ''}">${o.status}</span></td>

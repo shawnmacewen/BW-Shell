@@ -56,7 +56,7 @@ function renderWebsitesSubmissionsView() {
 
 
 function renderPrintView() {
-  const currentRole = (window.store && window.store.state && window.store.state.currentRole) || 'Super Admin';
+  const currentRole = window.currentRole || 'Super Admin';
   const isSuperAdmin = currentRole === 'Super Admin';
   const activeTab = (window.store && window.store.state && window.store.state.printTab)
     || (isSuperAdmin ? 'Print Orders' : 'Store');

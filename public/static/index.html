@@ -111,6 +111,7 @@
     function setRole(role) {
       const nextRole = ROLE_PROFILES[role] ? role : 'Super Admin';
       store.set({ currentRole: nextRole });
+      window.currentRole = nextRole;
       userMenuButton.textContent = `${ROLE_PROFILES[nextRole].label} ▾`;
       renderUserDropdown();
       applyRoleExperience();

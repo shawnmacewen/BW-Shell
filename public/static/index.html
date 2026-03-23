@@ -131,7 +131,8 @@
         navItems.forEach((item) => item.classList.toggle('active', item.dataset.page === fallback));
         renderSection(fallback);
       } else {
-        enforceRoleActions();
+        navItems.forEach((item) => item.classList.toggle('active', item.dataset.page === active));
+        renderSection(active);
       }
     }
 

@@ -66,18 +66,86 @@ function renderPrintView() {
   const activeTab = isSuperAdmin ? (window.__printTabState.admin || 'Print Orders') : (window.__printTabState.advisor || 'Store');
   const safeTab = tabs.includes(activeTab) ? activeTab : tabs[0];
 
+  const tabContent = safeTab === 'Store'
+    ? `
+      <div class="print-store-layout">
+        <section class="roles-panel print-store-left">
+          <h3 style="margin:0 0 0.55rem;">Print Store</h3>
+          <p class="placeholder-copy">Order professionally branded marketing materials and stationery from the print storefront.</p>
+          <p class="placeholder-copy">This area will include promotional content, featured products, and guidance for best-use templates.</p>
+        </section>
+        <section class="roles-panel print-store-right">
+          <button class="page-btn primary print-store-btn" type="button">Go to Storefront</button>
+          <p class="print-help-copy">Clicking button will open Storefront in a new page. You can return here and click "My Orders" to see any of your orders and pending status.</p>
+        </section>
+      </div>
+    `
+    : safeTab === 'My Orders'
+      ? `
+        <section class="roles-panel">
+          <div class="table-wrap">
+            <table class="users-table">
+              <thead>
+                <tr>
+                  <th>Order Date</th>
+                  <th>Order Number</th>
+                  <th>Status</th>
+                  <th>Tracking Number</th>
+                  <th>Shipped Date</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr><td>2026-03-18</td><td>PO-100384</td><td><span class="status-pill">Pending</span></td><td>—</td><td>—</td></tr>
+                <tr><td>2026-03-16</td><td>PO-100361</td><td><span class="status-pill active">Shipped</span></td><td><a class="archive-link" target="_blank" rel="noreferrer" href="https://www.ups.com/track?tracknum=1Z999AA10123456784">1Z999AA10123456784</a></td><td>2026-03-17</td></tr>
+                <tr><td>2026-03-12</td><td>PO-100322</td><td><span class="status-pill active">Shipped</span></td><td><a class="archive-link" target="_blank" rel="noreferrer" href="https://www.ups.com/track?tracknum=1Z999AA10123456785">1Z999AA10123456785</a></td><td>2026-03-14</td></tr>
+              </tbody>
+            </table>
+          </div>
+        </section>
+      `
+      : `
+        <section class="roles-panel">
+          <div class="users-header-row users-header-spaced" style="margin-bottom:0.7rem;">
+            <h3 style="margin:0;">My Profile</h3>
+            <div class="users-actions">
+              <select class="text-input" style="min-width:180px;"><option>Default Profile</option><option>Advisor East Profile</option></select>
+              <button class="new-role-btn secondary" type="button">Create Profile</button>
+              <button class="new-role-btn" type="button">Save Profile</button>
+            </div>
+          </div>
+
+          <div class="create-account-grid" style="grid-template-columns:1fr 1fr; gap:1rem 1.2rem;">
+            <div>
+              <h4 style="margin:0 0 0.5rem;">Your Information</h4>
+              <div class="field-group"><label>First Name</label><input class="text-input" value="Siva" /></div>
+              <div class="field-group"><label>Last Name</label><input class="text-input" value="Kumar" /></div>
+              <div class="field-group"><label>Company Name</label><input class="text-input" value="ABC Investments" /></div>
+              <div class="field-group"><label>Email Address</label><input class="text-input" value="siva.kumar@abcinvestments.com" /></div>
+              <div class="field-group"><label>Website URL</label><input class="text-input" value="https://www.abcinvestments.com" /></div>
+              <div class="field-group"><label>Phone</label><input class="text-input" value="(416) 555-0199" /></div>
+              <div class="field-group"><label>Cell Phone</label><input class="text-input" value="(416) 555-0132" /></div>
+              <div class="field-group"><label>Title</label><input class="text-input" value="Senior Financial Advisor" /></div>
+            </div>
+            <div>
+              <h4 style="margin:0 0 0.5rem;">Address Information</h4>
+              <div class="field-group"><label>Street Address</label><input class="text-input" value="145 King Street West" /></div>
+              <div class="field-group"><label>Address 2</label><input class="text-input" value="Suite 1300" /></div>
+              <div class="field-group"><label>City</label><input class="text-input" value="Toronto" /></div>
+              <div class="field-group"><label>State / Province</label><input class="text-input" value="Ontario" /></div>
+              <div class="field-group"><label>Zip / Postal Code</label><input class="text-input" value="M5H 1J8" /></div>
+            </div>
+          </div>
+        </section>
+      `;
+
   pageContainer.innerHTML = `
     <div class="page-header">
       <h1 class="page-title">Print</h1>
-      <p class="page-subtitle">Print experience mock for role-specific user journeys.</p>
     </div>
     <div class="users-subnav" style="margin-bottom:0.9rem;">
       ${tabs.map((tab) => `<button class="users-subnav-item ${tab === safeTab ? 'active' : ''}" data-print-tab="${tab}" type="button">${tab}</button>`).join('')}
     </div>
-    <section class="roles-panel" style="min-height:220px;">
-      <h3 style="margin:0 0 0.55rem;">${safeTab}</h3>
-      <p class="placeholder-copy">Content for <strong>${safeTab}</strong> will be populated later.</p>
-    </section>
+    ${tabContent}
   `;
 
   pageContainer.querySelectorAll('[data-print-tab]').forEach((btn) => {

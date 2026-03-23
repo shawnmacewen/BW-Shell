@@ -2558,3 +2558,23 @@ tbody tr:hover {
   font-size: 0.75rem;
   font-weight: 600;
 }
+
+
+.print-store-layout {
+  display: grid;
+  grid-template-columns: 2fr 1fr;
+  gap: 0.9rem;
+}
+
+.print-store-btn {
+  width: 100%;
+  min-height: 52px;
+  font-size: 1rem;
+}
+
+.print-help-copy {
+  margin-top: 0.55rem;
+  color: #66788f;
+  font-size: 0.78rem;
+  line-height: 1.35;
+}

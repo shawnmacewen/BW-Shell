@@ -144,7 +144,7 @@ function renderPrintView() {
                 <tr>
                   ${isSuperAdmin ? '<th>Account Name</th><th>Username</th><th>Email Address</th>' : ''}
                   <th>Order Date</th>
-                  <th>Order Number</th>
+                  <th>Order Number 🧾</th>
                   <th>Status</th>
                   <th>Tracking Number</th>
                   <th>Shipped Date</th>
